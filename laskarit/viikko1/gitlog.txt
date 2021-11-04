@@ -1,0 +1,58 @@
+commit cbbbb6763824dda9e10255c63a6e42e40baa35d6
+Author: Petri <yogho@hotmail.com>
+Date:   Thu Nov 4 19:59:19 2021 +0200
+
+    filet
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit ba77127cadbfc2222747589cab355814c31ac3a6
+Author: Petri <yogho@hotmail.com>
+Date:   Thu Nov 4 19:53:39 2021 +0200
+
+    filet luotu
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit d1fc7e643f7282f066312e25c3e3e57497e311e7
+Author: Petri <yogho@hotmail.com>
+Date:   Thu Nov 4 19:51:27 2021 +0200
+
+    stuff lisatty
+
+ stuff/nelonen.txt | 1 +
+ 1 file changed, 1 insertion(+)
+
+commit 05734475ba9019a8c1ecdc102ca2dd6885a59011
+Author: Petri <yogho@hotmail.com>
+Date:   Thu Nov 4 19:50:29 2021 +0200
+
+    tekstia lisatty
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit a0bec4a856824d1a190786af35b22b8b3187703b
+Author: Petri <yogho@hotmail.com>
+Date:   Thu Nov 4 19:35:54 2021 +0200
+
+    kolmas luotu
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 23de2c3d4aaa2a5b2cad71aa1d815fefe7a5a951
+Author: Petri <yogho@hotmail.com>
+Date:   Thu Nov 4 19:34:42 2021 +0200
+
+    muutos ja lisays
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
