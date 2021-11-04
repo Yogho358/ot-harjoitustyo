@@ -1,0 +1,21 @@
+├── kurssit
+│   └── ot2021
+│       ├── ot-harjoitustyo
+│       │   ├── laskarit
+│       │   │   └── viikko1
+│       │   │       └── komentorivi.txt
+│       │   └── README.md
+│       └── viikko1
+│           ├── __MACOSX
+│           ├── ot_viikko1
+│           │   └── tiedosto.txt
+│           ├── unicafe
+│           │   ├── poetry.lock
+│           │   ├── pyproject.toml
+│           │   └── src
+│           │       ├── index.py
+│           │       ├── kassapaate.py
+│           │       ├── maksukortti.py
+│           │       └── tests
+│           │           ├── __init__.py
+│           │           └── maksukortti_test.py
