@@ -1,2 +1,0 @@
-#Eka README
-*kas* **tässä**
