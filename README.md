@@ -1,2 +1,2 @@
-# Eka README
-*kas* **tässä**
+# Tehtävät
+**Viikko 1**
