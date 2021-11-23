@@ -1,5 +1,6 @@
 import unittest
 from textui.mainmenu import Mainmenu
+from services.gameservice import gameservice
 
 class StubIO:
     def __init__ (self,inputs):
@@ -16,6 +17,6 @@ class TestTextUi(unittest.TestCase):
 
     def test_main_menu_opens(self):
         io = StubIO(["x"])
-        menu = Mainmenu(io)
+        menu = Mainmenu(io,gameservice)
         menu.run()
         self.assertEqual(("Welcome to the Game" in io.outputs), True)
