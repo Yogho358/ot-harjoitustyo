@@ -6,7 +6,6 @@ class Gameservice:
     def __init__(self, character_repo = character_repository):
         self.player_char = None
         self.character_repo = character_repo
-        
 
     def create_character(self, name, current_hp, max_hp, weapon, pc_or_npc):
         c = Character(name, current_hp, max_hp, weapon, pc_or_npc)
@@ -20,6 +19,5 @@ class Gameservice:
 
     def set_player_char(self, name):
         self.player_char = self.find_character(name)
-        
 
 gameservice = Gameservice()

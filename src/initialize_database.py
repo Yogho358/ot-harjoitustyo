@@ -22,11 +22,20 @@ def create_tables(connection):
 
     connection.commit()
 
+def add_enemy(connection, name, current_hp, max_hp, weapon, pc_or_npc):
+    cursor = connection.cursor()
+    cursor.execute("insert into characters (name, current_hp, max_hp, weapon, pc_or_npc) values (?, ?, ?, ?, ?)",
+    ("swordsman", 20, 20, "longsword", "npc"))
+    cursor.execute("insert into characters (name, current_hp, max_hp, weapon, pc_or_npc) values (?, ?, ?, ?, ?)",
+    ("batmonster", 30, 30, "claws", "npc"))
+    connection.commit()
+
 def initialize_database():
     connection = get_database_connection()
 
     drop_tables(connection)
     create_tables(connection)
+    add_enemy(connection, "swordman", 20, 20, "longsword", "npc")
 
 if __name__ == '__main__':
     initialize_database()
