@@ -1,37 +1,40 @@
-from entities.character import Character
+#from entities.character import Character
 
-class Character_Repository:
+class CharacterRepository:
     def __init__(self):
         self.characters = []
 
     def find_all(self):
         return self.characters
 
-    def create(self,character):
+    def create(self, character):
         characters = self.find_all()
         existing_character = None
-        for c in characters:
-            if c.name == character.name:
-                existing_character = c
-    
+        for char in characters:
+            if char.name == character.name:
+                existing_character = char
+
         if existing_character:
-            raise Exception(f"Character with name {character.name} already exists")
+            raise Exception(
+                f"Character with name {character.name} already exists")
         characters.append(character)
         self.characters = characters
         return character
 
     def find_by_character_name(self, name):
         character = None
-        for c in self.characters:
-            if c.name == name:
-                character = c
-                return character
+        for char in self.characters:
+            if char.name == name:
+                character = char
 
-        if character == None:
+
+        if character is None:
             raise Exception(f"{name} not found")
+
+        return character
 
     def clear(self):
         self.characters = []
 
-character_repository = Character_Repository()
-        
+
+character_repository = CharacterRepository()

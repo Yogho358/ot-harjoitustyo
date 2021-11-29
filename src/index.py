@@ -7,7 +7,5 @@ def main():
     mainmenu = Mainmenu(io, gameservice)
     mainmenu.run()
 
-
-
 if __name__ == "__main__":
     main()

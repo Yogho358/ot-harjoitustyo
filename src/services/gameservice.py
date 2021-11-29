@@ -3,14 +3,14 @@ from repositories.character_repository import character_repository
 
 class Gameservice:
 
-    def __init__(self,character_repo = character_repository):
+    def __init__(self, character_repo = character_repository):
         self.player_char = None
         self.character_repo = character_repo
         
 
     def create_character(self, name, current_hp, max_hp, weapon):
-        c = Character(name,current_hp,max_hp,weapon)
-        self.player_char = self.character_repo.create(c)
+        c = Character(name, current_hp, max_hp, weapon)
+        self.player_char =self.character_repo.create(c)
 
     def find_all(self):
         return self.character_repo.find_all()

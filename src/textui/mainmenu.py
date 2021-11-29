@@ -37,8 +37,8 @@ class Mainmenu:
                 chars = self.gameservice.find_all()
                 for i in range(len(chars)):
                     self.io.print(f"{i+1}: {chars[i].name}")
-                choise = int(self.io.read("number of choise: "))
-                char = chars[choise-1].name
+                choice = int(self.io.read("number of choice: "))
+                char = chars[choice-1].name
                 self.gameservice.set_player_char(char)
 
 
