@@ -1,5 +1,6 @@
 # Arkkitehtuuri
 
 ### Alustava luokkakaavio
-![Luokkakaavio](.kuvat/luokkakaavio.png)
+![Luokkakaavio](./kuvat/luokkakaavio.png)
+
 
