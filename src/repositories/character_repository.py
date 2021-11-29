@@ -16,7 +16,7 @@ class CharacterRepository:
 
     def find_all(self):
         cursor = self.connection.cursor()
-        cursor.execute("select * from characters where pc_or_npc = ?", ("pc",))
+        cursor.execute("select * from characters where pc_or_npc = ? order by name", ("pc",))
         rows = cursor.fetchall()
         return list(map(get_character_by_row, rows))
 
@@ -42,7 +42,9 @@ class CharacterRepository:
         return get_character_by_row(row)
 
     def clear(self):
-        self.characters = []
+        cursor = self.connection.cursor()
+        cursor.execute("delete from characters")
+        self.connection.commit()
 
 
 character_repository = CharacterRepository(get_database_connection())
