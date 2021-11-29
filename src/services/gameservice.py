@@ -8,8 +8,8 @@ class Gameservice:
         self.character_repo = character_repo
         
 
-    def create_character(self, name, current_hp, max_hp, weapon):
-        c = Character(name, current_hp, max_hp, weapon)
+    def create_character(self, name, current_hp, max_hp, weapon, pc_or_npc):
+        c = Character(name, current_hp, max_hp, weapon, pc_or_npc)
         self.player_char =self.character_repo.create(c)
 
     def find_all(self):

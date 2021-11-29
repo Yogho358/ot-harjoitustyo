@@ -7,8 +7,9 @@ COMMANDS = {
     "2": "2 Load character",
 }
 
+
 class Mainmenu:
-    def __init__(self,io,gameservice):
+    def __init__(self, io, gameservice):
         self.io = io
         self.gameservice = gameservice
         self.player_char = None
@@ -29,20 +30,37 @@ class Mainmenu:
                 self.print_commands()
             if command == "x":
                 break
+
             if command == "1":
-                name = self.io.read("name: ")
-                self.gameservice.create_character(name = name, current_hp = 20, max_hp = 20, weapon = "sword")
-            
+                self.create_pc()
+
             if command == "2":
-                chars = self.gameservice.find_all()
-                for i in range(len(chars)):
-                    self.io.print(f"{i+1}: {chars[i].name}")
-                choice = int(self.io.read("number of choice: "))
-                char = chars[choice-1].name
-                self.gameservice.set_player_char(char)
-
-
+                self.select_pc()
 
     def print_commands(self):
         for command in COMMANDS:
-            self.io.print(command)
+            self.io.print(f"{command}: {COMMANDS[command]}")
+
+    def create_pc(self):
+        name = self.io.read("name: ")
+        try:
+            self.gameservice.create_character(
+                name=name, current_hp=20, max_hp=20, weapon="sword", pc_or_npc="pc")
+        except Exception as e:
+            self.io.print(e)
+
+    def select_pc(self):
+        chars = self.gameservice.find_all()
+        if len(chars) == 0:
+            self.io.print("No characters available")
+            return
+     
+        for i in range(len(chars)):
+            self.io.print(f"{i+1}: {chars[i].name}")
+        try:
+            choice = int(self.io.read("number of choice: "))
+        except ValueError:
+            self.io.print("Must give a number")
+            return
+        char = chars[choice-1].name
+        self.gameservice.set_player_char(char)     
