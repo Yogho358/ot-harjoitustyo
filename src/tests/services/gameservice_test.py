@@ -20,6 +20,9 @@ class FakeCharacterRepository:
 
         return character
 
+    def pick_enemy(self):
+        return Character("swordsman", 20, 20, "longsword", "npc")
+
 class TestGameservice(unittest.TestCase):
     
     def setUp(self):

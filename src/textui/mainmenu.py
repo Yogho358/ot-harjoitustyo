@@ -13,6 +13,7 @@ class Mainmenu:
         self.io = io
         self.gameservice = gameservice
         self.player_char = None
+        
 
     def run(self):
         self.io.print("Welcome to the Game")
@@ -24,6 +25,7 @@ class Mainmenu:
                 self.io.print("No character selected")
             else:
                 self.io.print(f"{self.player_char.name} ready for adventure")
+                self.io.print(f"You are about to face {self.gameservice.get_enemy().name} in a {self.gameservice.get_arena().size} arena")
             command = self.io.read("Command: ")
             if not command in COMMANDS:
                 self.io.print("Invalid command")

@@ -1,3 +1,4 @@
+import random
 from entities.character import Character
 from database_connection import get_database_connection
 
@@ -15,8 +16,18 @@ class CharacterRepository:
         self.connection = connection
 
     def find_all(self):
+        return self.find("pc")
+
+    def find_enemies(self):
+        return self.find("npc")
+
+    def pick_enemy(self):
+        chars = self.find_enemies()
+        return random.choice(chars)
+
+    def find(self, pc_or_npc):
         cursor = self.connection.cursor()
-        cursor.execute("select * from characters where pc_or_npc = ? order by name", ("pc",))
+        cursor.execute("select * from characters where pc_or_npc = ? order by name", (pc_or_npc,))
         rows = cursor.fetchall()
         return list(map(get_character_by_row, rows))
 
