@@ -20,6 +20,8 @@ class Arenamenu:
     def run(self):
         self._io.print("Arena")
         self._io.print(self._battleservice.enemy.name)
+        self._io.print(self._battleservice.pc_weapon.name)
+        self._io.print(self._battleservice.pc_weapon.size)
 
         while True:
             self.print_commands()

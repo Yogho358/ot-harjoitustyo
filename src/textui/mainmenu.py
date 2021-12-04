@@ -1,13 +1,12 @@
-from services.battleservice import Battleservice
-from services.gameservice import gameservice
-from entities.character import Character
+
 from textui.arenamenu import Arenamenu
 
 COMMANDS = {
     "x": "x quit",
     "1": "1 New character",
     "2": "2 Load character",
-    "3": "3 enter arena"
+    "3": "3 enter arena",
+    "4": "4 list available weapons"
 }
 
 
@@ -21,6 +20,8 @@ class Mainmenu:
     def run(self):
         self.io.print("Welcome to the Game")
         self.print_commands()
+        self.gameservice.pick_enemy()
+        self.gameservice.next_arena()
 
         while True:
             self.player_char = self.gameservice.player_char
@@ -28,7 +29,7 @@ class Mainmenu:
                 self.io.print("No character selected")
             else:
                 self.io.print(f"{self.player_char.name} ready for adventure")
-                self.io.print(f"You are about to face {self.gameservice.get_enemy().name} in a {self.gameservice.get_arena().size} arena")
+                self.io.print(f"You are about to face {self.gameservice.enemy.name} in a {self.gameservice.arena.size} arena")
             command = self.io.read("Command: ")
             if not command in COMMANDS:
                 self.io.print("Invalid command")
@@ -43,12 +44,10 @@ class Mainmenu:
                 self.select_pc()
 
             if command == "3":
-                try:
-                    battleservice = self.gameservice.enter_arena()
-                    arenamenu = Arenamenu(self.io, battleservice)
-                    arenamenu.run()
-                except Exception as e:
-                    self.io.print(e)
+                self.enter_arena()
+
+            if command == "4":
+                self.list_weapons()
 
     def print_commands(self):
         for command in COMMANDS:
@@ -56,9 +55,10 @@ class Mainmenu:
 
     def create_pc(self):
         name = self.io.read("name: ")
+        weapon = self.select_weapon()
         try:
             self.gameservice.create_character(
-                name=name, current_hp=20, max_hp=20, weapon="sword", pc_or_npc="pc")
+                name=name, current_hp=20, max_hp=20, weapon=weapon, pc_or_npc="pc")
         except Exception as e:
             self.io.print(e)
 
@@ -76,5 +76,39 @@ class Mainmenu:
             self.io.print("Must give a number")
             return
         char = chars[choice-1].name
-        self.gameservice.set_player_char(char)     
+        self.gameservice.set_player_char(char)
+
+    def select_weapon(self):
+        weapons = self.gameservice.find_all_weapons()
+        if len(weapons) == 0:
+            self.io.print("No weapons available")
+            return
+        
+        for i in range(len(weapons)):
+            self.io.print(f"{i+1}: {weapons[i].name}")
+        try:
+            choice = int(self.io.read("number of choice: "))
+        except ValueError:
+            self.io.print("Must give a number")
+            return
+        weapon_name = weapons[choice-1].name
+        return weapon_name
+
+
+    def enter_arena(self):
+        try:
+            battleservice = self.gameservice.enter_arena()
+            arenamenu = Arenamenu(self.io, battleservice)
+            arenamenu.run()
+        except Exception as e:
+                    self.io.print(e)
+
+    def list_weapons(self):
+        weapons = self.gameservice.find_all_weapons()
+        if len(weapons) == 0:
+            self.io.print("No weapons available")
+            return
+        
+        for weapon in weapons:
+            self.io.print(f"{weapon.name}")
 

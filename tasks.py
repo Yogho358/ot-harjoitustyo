@@ -10,7 +10,8 @@ def test(ctx):
 
 @task
 def coverage_report(ctx):
-    ctx.run("coverage run --branch -m pytest src | coverage html")
+    ctx.run("coverage run --branch -m pytest src")
+    ctx.run("coverage html")
 
 @task 
 def lint(ctx):

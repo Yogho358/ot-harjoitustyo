@@ -1,6 +1,7 @@
 import unittest
 from textui.mainmenu import Mainmenu
 from services.gameservice import gameservice
+from initialize_database import initialize_database
 
 class StubIO:
     def __init__ (self,inputs):
@@ -14,6 +15,9 @@ class StubIO:
         self.outputs.append(text)
 
 class TestTextUi(unittest.TestCase):
+
+    def setUp(self):
+        initialize_database()
 
     def test_main_menu_opens(self):
         io = StubIO(["x"])
