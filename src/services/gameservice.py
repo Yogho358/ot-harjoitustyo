@@ -1,6 +1,7 @@
 from entities.character import Character
 from repositories.character_repository import character_repository
 from repositories.arena_repository import arena_repository
+from services.battleservice import Battleservice
 
 class Gameservice:
 
@@ -12,7 +13,7 @@ class Gameservice:
 
     def create_character(self, name, current_hp, max_hp, weapon, pc_or_npc):
         c = Character(name, current_hp, max_hp, weapon, pc_or_npc)
-        self.player_char =self.character_repo.create(c)
+        self.player_char = self.character_repo.create(c)
 
     def find_all(self):
         return self.character_repo.find_all()
@@ -28,5 +29,8 @@ class Gameservice:
 
     def get_arena(self):
         return self.arena
+
+    def enter_arena(self):
+        return Battleservice(self.player_char, self.enemy, self.arena)
 
 gameservice = Gameservice()

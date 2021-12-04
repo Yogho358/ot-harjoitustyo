@@ -1,10 +1,13 @@
+from services.battleservice import Battleservice
 from services.gameservice import gameservice
 from entities.character import Character
+from textui.arenamenu import Arenamenu
 
 COMMANDS = {
     "x": "x quit",
     "1": "1 New character",
     "2": "2 Load character",
+    "3": "3 enter arena"
 }
 
 
@@ -39,9 +42,17 @@ class Mainmenu:
             if command == "2":
                 self.select_pc()
 
+            if command == "3":
+                try:
+                    battleservice = self.gameservice.enter_arena()
+                    arenamenu = Arenamenu(self.io, battleservice)
+                    arenamenu.run()
+                except Exception as e:
+                    self.io.print(e)
+
     def print_commands(self):
         for command in COMMANDS:
-            self.io.print(f"{command}: {COMMANDS[command]}")
+            self.io.print(COMMANDS[command])
 
     def create_pc(self):
         name = self.io.read("name: ")
@@ -66,3 +77,4 @@ class Mainmenu:
             return
         char = chars[choice-1].name
         self.gameservice.set_player_char(char)     
+
