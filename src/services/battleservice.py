@@ -7,3 +7,4 @@ class Battleservice:
         self.arena = arena
         self._weapon_repo = weapon_repo
         self.pc_weapon = self._weapon_repo.find_by_name(self.pc.weapon)
+        self.enemy_weapon = self._weapon_repo.find_by_name(self.enemy.weapon)

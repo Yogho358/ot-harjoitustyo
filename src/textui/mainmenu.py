@@ -79,6 +79,7 @@ class Mainmenu:
         self.gameservice.set_player_char(char)
 
     def select_weapon(self):
+        self.io.print("Choose a weapon")
         weapons = self.gameservice.find_all_weapons()
         if len(weapons) == 0:
             self.io.print("No weapons available")
