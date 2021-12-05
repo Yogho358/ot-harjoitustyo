@@ -6,3 +6,4 @@ class Weapon:
         self.min_dmg = min_dmg
         self.max_dmg = max_dmg
         self.chance_to_defend = chance_to_defend
+        

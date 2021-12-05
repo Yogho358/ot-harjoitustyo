@@ -40,7 +40,7 @@ def add_enemy(connection):
     cursor.execute("insert into characters (name, current_hp, max_hp, weapon, pc_or_npc) values (?, ?, ?, ?, ?)",
     ("swordsman", 20, 20, "longsword", "npc"))
     cursor.execute("insert into characters (name, current_hp, max_hp, weapon, pc_or_npc) values (?, ?, ?, ?, ?)",
-    ("batmonster", 30, 30, "claws", "npc"))
+    ("batmonster", 30, 30, "claw", "npc"))
     connection.commit()
 
 def add_weapon(connection):
@@ -61,3 +61,4 @@ def initialize_database():
 
 if __name__ == '__main__':
     initialize_database()
+    

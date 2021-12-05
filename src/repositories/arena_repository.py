@@ -8,6 +8,6 @@ class ArenaRepository:
     def next_arena(self):
         if random.randint(0,1) == 0:
             return Arena("small")
-        return Arena("big")
+        return Arena("large")
 
 arena_repository = ArenaRepository()

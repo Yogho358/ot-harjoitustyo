@@ -1,13 +1,17 @@
 import random
 from entities.character import Character
+from repositories.weapon_repository import weapon_repository
 from database_connection import get_database_connection
 
 
 def get_character_by_row(row):
+    if row is None:
+        return None
+    weapon = weapon_repository.find_by_name(row["weapon"])
     return Character(row["name"],
                      row["current_hp"],
                      row["max_hp"],
-                     row["weapon"],
+                     weapon,
                      row["pc_or_npc"]) if row else None
 
 
@@ -42,8 +46,7 @@ class CharacterRepository:
         )
 
         self.connection.commit()
-
-        return character
+        return self.find_by_character_name(character.name)
 
     def find_by_character_name(self, name):
         cursor = self.connection.cursor()

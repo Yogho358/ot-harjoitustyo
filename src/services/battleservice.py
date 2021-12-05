@@ -1,10 +1,30 @@
+import random
 from repositories.weapon_repository import weapon_repository
 
 class Battleservice:
-    def __init__(self, pc, enemy, arena, weapon_repo = weapon_repository):
+    def __init__(self, pc, enemy, arena):
         self.pc = pc
         self.enemy = enemy
         self.arena = arena
-        self._weapon_repo = weapon_repo
-        self.pc_weapon = self._weapon_repo.find_by_name(self.pc.weapon)
-        self.enemy_weapon = self._weapon_repo.find_by_name(self.enemy.weapon)
+
+    def turn(self, player, command):
+        if command == "attack":
+            if player == "pc":
+                attacker = self.pc
+                target = self.enemy
+            else:
+                attacker = self.enemy
+                target = self.pc
+            return self.attack(attacker, target)
+        return
+
+    def attack(self, attacker, target):
+        attack_roll = random.randint(0, 100)
+        if self.arena.size != attacker.weapon.size:
+            attack_roll -= 20
+        if attack_roll < target.weapon.chance_to_defend:
+            return False
+
+        damage = random.randint(attacker.weapon.min_dmg, attacker.weapon.max_dmg)
+        target.current_hp -= damage
+        return True

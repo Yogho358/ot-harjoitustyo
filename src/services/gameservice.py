@@ -1,8 +1,8 @@
 from entities.character import Character
 from repositories.character_repository import character_repository
 from repositories.arena_repository import arena_repository
-from services.battleservice import Battleservice
 from repositories.weapon_repository import weapon_repository
+from services.battleservice import Battleservice
 
 class Gameservice:
 
@@ -34,7 +34,7 @@ class Gameservice:
         self.player_char = self.find_character(name)
 
     def enter_arena(self):
-        if self.player_char == None:
+        if self.player_char is None:
             raise Exception("You must select a character")
         return Battleservice(self.player_char, self.enemy, self.arena)
 

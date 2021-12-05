@@ -2,6 +2,7 @@ import unittest
 from repositories.character_repository import character_repository
 from entities.character import Character
 from initialize_database import initialize_database
+from entities.weapon import Weapon
 
 class TestCharacterRepository(unittest.TestCase):
 
@@ -9,8 +10,10 @@ class TestCharacterRepository(unittest.TestCase):
     
     def setUp(self):
         initialize_database()
-        c = Character("mr x", 30, 30, "sword", "pc")
-        c2 = Character("mr a", 20, 20, "sword", "pc")
+        w1 = Weapon("longsword", "large", 2, 6, 65)
+        w2 = Weapon("shortsword", "small", 1, 4, 45)
+        c = Character("mr x", 30, 30, "longsword", "pc")
+        c2 = Character("mr a", 20, 20, "claw", "pc")
         character_repository.create(c)
         character_repository.create(c2)
 

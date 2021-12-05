@@ -97,13 +97,11 @@ class Mainmenu:
 
 
     def enter_arena(self):
-        try:
-            battleservice = self.gameservice.enter_arena()
-            arenamenu = Arenamenu(self.io, battleservice)
-            arenamenu.run()
-        except Exception as e:
-                    self.io.print(e)
-
+        
+        battleservice = self.gameservice.enter_arena()
+        arenamenu = Arenamenu(self.io, battleservice)
+        arenamenu.run()
+        
     def list_weapons(self):
         weapons = self.gameservice.find_all_weapons()
         if len(weapons) == 0:
