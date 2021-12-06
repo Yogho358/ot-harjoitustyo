@@ -2,6 +2,7 @@
 ## Pelin kuvaus
 Vuoropohjainen taistelu/roolipeli, jossa miekkamies taistelee kerrallaan yhtä vihollista, joka voi olla miekkamies tai hirviö, vastaan. Hahmoilla on ominaisuuksina osumapisteet ja ase, ja mahdollisesti aseeseen liittyviä taitoja.  Yksi toiminto, joka yleensä on lyönti, per vuoro, ja se jolta loppuu osumapisteet häviää. Kerraallaan voi olla monta luotua hahmoa, joiden tilan voi tallettaa ja ladata.
 ## Perustoiminnallisuus
+Graafinen käyttöliittymä
 ### Ennen pelihahmon valintaa
 Käyttäjä voi luoda uuden hahmon tai valita aiemmin tallennetun DONE
 ### Valinnan jälkeen
