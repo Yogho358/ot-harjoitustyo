@@ -55,7 +55,10 @@ class Mainmenu:
 
     def create_pc(self):
         name = self.io.read("name: ")
-        weapon = self.select_weapon()
+        try:
+            weapon = self.select_weapon()
+        except Exception as e:
+            self.io.print(e)
         try:
             self.gameservice.create_character(
                 name=name, current_hp=20, max_hp=20, weapon=weapon, pc_or_npc="pc")
@@ -84,24 +87,31 @@ class Mainmenu:
         if len(weapons) == 0:
             self.io.print("No weapons available")
             return
+
+        weapon_indices =[]
         
         for i in range(len(weapons)):
             self.io.print(f"{i+1}: {weapons[i].name}")
+            weapon_indices.append(i+1)
         try:
             choice = int(self.io.read("number of choice: "))
         except ValueError:
             self.io.print("Must give a number")
             return
+        if choice not in weapon_indices:
+            raise Exception("no such weapon")
         weapon_name = weapons[choice-1].name
         return weapon_name
 
 
     def enter_arena(self):
-        
-        battleservice = self.gameservice.enter_arena()
-        arenamenu = Arenamenu(self.io, battleservice)
-        arenamenu.run()
-        
+        try:
+            battleservice = self.gameservice.enter_arena()
+            arenamenu = Arenamenu(self.io, battleservice)
+            arenamenu.run()
+        except Exception as e:
+                    self.io.print(e)
+
     def list_weapons(self):
         weapons = self.gameservice.find_all_weapons()
         if len(weapons) == 0:

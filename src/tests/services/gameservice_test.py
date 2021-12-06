@@ -1,5 +1,5 @@
 import unittest
-from services.gameservice import Gameservice
+from services.gameservice import Gameservicepor
 from initialize_database import initialize_database
 
 class TestGameservice(unittest.TestCase):

@@ -18,6 +18,7 @@ class TestTextUi(unittest.TestCase):
 
     def setUp(self):
         initialize_database()
+        
 
     def test_main_menu_opens(self):
         io = StubIO(["x"])
