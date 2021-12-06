@@ -6,6 +6,7 @@ Vuoropohjainen roolipeli, jossa hahmoa kehitetään taistelemalla yksittäisiä 
 * [Vaatimusmäärittely](https://github.com/Yogho358/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
 * [Työaikakirjanpito](https://github.com/Yogho358/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 * [Arkkitehtuuri](https://github.com/Yogho358/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.MD)
+* [Release](https://github.com/Yogho358/ot-harjoitustyo/releases/tag/viikko5)
 
 ## Käyttöohje
 
@@ -13,5 +14,5 @@ Asenna ensin riippuvuudet komennolla poetry install, sitten asenna peli komennol
 
 Peli käynnistetään komennolla poetry run invoke start
 
-Testit ajetaan komennolla poetry run invoke test, testikattavuusraportin saa komennolla poetry run invoke coverage-report, ja lint-paprotin komennolla poetry run invoke lint
+Testit ajetaan komennolla poetry run invoke test, testikattavuusraportin saa komennolla poetry run invoke coverage-report, ja lint-raportin komennolla poetry run invoke lint
 
