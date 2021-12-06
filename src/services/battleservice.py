@@ -1,5 +1,5 @@
 import random
-from repositories.weapon_repository import weapon_repository
+
 
 class Battleservice:
     def __init__(self, pc, enemy, arena):
