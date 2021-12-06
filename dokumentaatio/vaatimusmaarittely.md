@@ -7,11 +7,12 @@ Käyttäjä voi luoda uuden hahmon tai valita aiemmin tallennetun DONE
 ### Valinnan jälkeen
 - Hahmo voi mennä areenalle, jolle arvotaan ominaisuudeksi koko, iso tai pieni. DONE
 - Areenalle arvotaan vihollinen, miekkamies tai hirviö. DONE
-- Hahmo ja vihollinen lyövät toisiaan kunnes toiselta loppuu osumapisteet. 
+- Hahmo ja vihollinen lyövät toisiaan kunnes toiselta loppuu osumapisteet. DONE
+- Hahmolleen voi valita aseen, jolla on ominaisuuksina vahinko ja koko. DONE
+- Areenan koko vaikuttaa siihen, miten minkäkin kokoinen ase toimii. DONE
 - Jos pelaaja voittaa, hahmo saa uuden kokemustason ja voi jatkaa seuraavalle areenalle tai tallentaa hahmon.
 ## Jatkokehitysideoita
-- hahmolleen voi valita aseen, jolla on ominaisuuksina vahinko ja koko
-- areenan koko vaikuttaa siihen, miten minkäkin kokoinen ase toimii
+
 - hahmo voi oppia uusia liikkeitä eri aseille tasonnousun yhteydessä
 - viholliset voivat käyttää eri aseita
 - areenan ominaisuuksia lisää
