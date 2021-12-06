@@ -7,4 +7,4 @@
 | 29.11 | 6    | Tietokanta toimimaan, areenan ja vastustajan lisäys, linttaus |
 | 6.12  | 10   | Aseiden lisäys, taistelu toimii|
 
-Yhteensä 11 tuntia
+Yhteensä 21 tuntia
