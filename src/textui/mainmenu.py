@@ -1,5 +1,6 @@
 
 from textui.arenamenu import Arenamenu
+from gui.battle_ui import BattleUi
 
 COMMANDS = {
     "x": "x quit",
@@ -107,7 +108,7 @@ class Mainmenu:
     def enter_arena(self):
         try:
             battleservice = self.gameservice.enter_arena()
-            arenamenu = Arenamenu(self.io, battleservice)
+            arenamenu = BattleUi(battleservice)
             arenamenu.run()
         except Exception as e:
                     self.io.print(e)

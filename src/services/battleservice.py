@@ -21,7 +21,7 @@ class Battleservice:
     def attack(self, attacker, target):
         attack_roll = random.randint(0, 100)
         if self.arena.size != attacker.weapon.size:
-            attack_roll -= 20
+            attack_roll -= 10
         if attack_roll < target.weapon.chance_to_defend:
             return False
 
