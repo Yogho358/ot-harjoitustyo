@@ -79,7 +79,11 @@ class Mainmenu:
         except ValueError:
             self.io.print("Must give a number")
             return
-        char = chars[choice-1].name
+        try:
+            char = chars[choice-1].name
+        except Exception:
+            self.io.print("No such character")
+            return
         self.gameservice.set_player_char(char)
 
     def select_weapon(self):
