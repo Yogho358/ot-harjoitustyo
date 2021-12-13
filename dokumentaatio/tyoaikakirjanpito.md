@@ -6,5 +6,7 @@
 | 22.11 | 4    | Alustava runko ja tekstikäyttöliittymä|
 | 29.11 | 6    | Tietokanta toimimaan, areenan ja vastustajan lisäys, linttaus |
 | 6.12  | 10   | Aseiden lisäys, taistelu toimii|
+| 11.12 | 5    | Pyglet-kirjaston opettelu ja käyttöönotto|
+| 13.12 | 5    | Pyglet-kirjaston opettelu ja käyttöönotto|
 
-Yhteensä 21 tuntia
+Yhteensä 31 tuntia
