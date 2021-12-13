@@ -7,6 +7,7 @@ Vuoropohjainen roolipeli, jossa hahmoa kehitetään taistelemalla yksittäisiä 
 * [Työaikakirjanpito](https://github.com/Yogho358/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)
 * [Arkkitehtuuri](https://github.com/Yogho358/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.MD)
 * [Release](https://github.com/Yogho358/ot-harjoitustyo/releases/tag/viikko5)
+* [Release 2](https://github.com/Yogho358/ot-harjoitustyo/releases/tag/viikko6)
 
 ## Käyttöohje
 
