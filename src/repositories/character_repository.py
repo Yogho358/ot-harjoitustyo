@@ -16,6 +16,8 @@ def get_character_by_row(row):
 
 
 class CharacterRepository:
+    """Repository for saving all the characters
+    """
     def __init__(self, connection):
         self.connection = connection
 
@@ -26,10 +28,23 @@ class CharacterRepository:
         return self.find("npc")
 
     def pick_enemy(self):
+        """Chhoses a random enemy character from the database
+
+        Returns:
+            Character: The chosen npc
+        """
         chars = self.find_enemies()
         return random.choice(chars)
 
     def find(self, pc_or_npc):
+        """Finds either pcs or npcs from the database
+
+        Args:
+            pc_or_npc (string): whether looking for pcs or npcs
+
+        Returns:
+            list of Character: list of all characters in database matching pc or npc setting
+        """
         cursor = self.connection.cursor()
         cursor.execute("select * from characters where pc_or_npc = ? order by name", (pc_or_npc,))
         rows = cursor.fetchall()
@@ -56,6 +71,8 @@ class CharacterRepository:
         return get_character_by_row(row)
 
     def clear(self):
+        """deletes all Characters
+        """
         cursor = self.connection.cursor()
         cursor.execute("delete from characters")
         self.connection.commit()

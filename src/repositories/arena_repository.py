@@ -2,6 +2,8 @@ import random
 from entities.arena import Arena
 
 class ArenaRepository:
+    """Placeholder for a future time when different arenas are saved in database
+    """
     def __init__(self):
         pass
 
