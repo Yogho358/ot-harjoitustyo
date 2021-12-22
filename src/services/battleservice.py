@@ -23,7 +23,7 @@ class Battleservice:
         self._damage_modifier = 0
         
 
-    def turn(self, player, command):
+    def turn(self, player, command, option = None):
         """processes a single turn
 
         Args:
@@ -42,6 +42,8 @@ class Battleservice:
 
         if command == "attack":
             return self.attack(actor, target)
+        if command == "skill_attack":
+            return self.attack_with_skill(actor, target, option)
         return
 
     def attack(self, attacker, target):
@@ -56,7 +58,8 @@ class Battleservice:
         target.current_hp -= damage + self._damage_modifier
         return True
 
-    def attack_with_skill(self, attacker, target, skill):
+    def attack_with_skill(self, attacker, target, skill_number):
+        skill = self.pc.skills[skill_number-1]
         if skill.arena_size == self.arena.size or skill.arena_size == "all":
             self._attack_modifier += skill.attack_modifier
             self._damage_modifier += skill.damage_modifier

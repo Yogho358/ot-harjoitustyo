@@ -8,9 +8,10 @@ class BattleUi:
 
         self.pc = self._battleservice.pc
         self.enemy = self._battleservice.enemy
+        self.number_of_skills = len(self.pc.skills)
 
 
-        self.window = pyglet.window.Window(fullscreen = True)
+        self.window = pyglet.window.Window(fullscreen = False)
         self.main_label = pyglet.text.Label("Fight", 
                                             font_size = 40, 
                                             x=self.window.width//2, y=self.window.height-50,
@@ -33,8 +34,12 @@ class BattleUi:
         self.report_label = pyglet.text.Label("",x=self.window.width//2, y=self.window.height//2,
                                             anchor_x="center", anchor_y="center")
 
-        self.instruction_label = pyglet.text.Label("Press 1 to attack",x=self.window.width//2, y=self.window.height//7,
+        self.instruction_label = pyglet.text.Label("Press a to attack",x=self.window.width//2, y=self.window.height//7,
                                                     anchor_x="center", anchor_y="center")
+
+        self.skill_label = self.skill_buttons()
+
+        
         
         
         self.waiting_for_turn = False
@@ -56,6 +61,7 @@ class BattleUi:
         self.report_label.draw()
         self.arena_label.draw()
         self.instruction_label.draw()
+        self.skill_label.draw()
 
     def battle_over_window(self):
         label = pyglet.text.Label("", 
@@ -78,8 +84,11 @@ class BattleUi:
     def on_key_press(self, symbol, modifiers):
         if self.waiting_for_turn:
             return
-        if symbol == key._1:
+        if symbol == key.A:
             self.pc_attacks()
+        if symbol == key._1 and self.number_of_skills >= 1:
+            self.pc_uses_skill_attack(1)
+
 
         self.update_labels()
         self.waiting_for_turn = True
@@ -102,10 +111,23 @@ class BattleUi:
             self.report_label.text = "You hit!"
         else:
             self.report_label.text = "You missed!"
+
+    def pc_uses_skill_attack(self, skill_number):
+        if(self._battleservice.turn("pc", "skill_attack", skill_number)):
+            self.report_label.text = "You hit!"
+        else:
+            self.report_label.text = "You missed!"
         
     def check_hps(self):
         self.battle_over = self._battleservice.battle_over()
-        
+
+    def skill_buttons(self):
+        text = ""
+        for i in range(1,self.number_of_skills+1):
+            text = text + f"press {i} to use skill {self.pc.skills[i-1].name}  "
+        label = pyglet.text.Label(text,x=150, y=self.window.height//3,
+                                             anchor_x="center", anchor_y="center")
+        return label
 
     def update_labels(self):
         self.pc_label.text = f"{self.pc.name}, {self.pc.current_hp}/{self.pc.max_hp}"
