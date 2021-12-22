@@ -21,7 +21,6 @@ class Battleservice:
         self.arena = arena
         self._attack_modifier = 0
         self._damage_modifier = 0
-        
 
     def turn(self, player, command, option = None):
         """processes a single turn
@@ -35,7 +34,7 @@ class Battleservice:
         """
         if player == "pc":
             actor = self.pc
-            target = self.enemy            
+            target = self.enemy
         else:
             actor = self.enemy
             target = self.pc
@@ -50,7 +49,7 @@ class Battleservice:
         attack_roll = random.randint(0, 100) + self._attack_modifier
         if self.arena.size == "small" and attacker.weapon.size == "large":
             attack_roll -= 10
-        
+
         if attack_roll < target.weapon.chance_to_defend:
             return False
 

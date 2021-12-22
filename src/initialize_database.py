@@ -62,9 +62,11 @@ def create_tables(connection):
 
 def add_enemy(connection):
     cursor = connection.cursor()
-    cursor.execute("insert into characters (name, current_hp, max_hp, weapon, pc_or_npc) values (?, ?, ?, ?, ?)",
+    cursor.execute(
+        "insert into characters (name, current_hp, max_hp, weapon, pc_or_npc) values (?, ?, ?, ?, ?)",
     ("swordsman", 20, 20, "longsword", "npc"))
-    cursor.execute("insert into characters (name, current_hp, max_hp, weapon, pc_or_npc) values (?, ?, ?, ?, ?)",
+    cursor.execute(
+        "insert into characters (name, current_hp, max_hp, weapon, pc_or_npc) values (?, ?, ?, ?, ?)",
     ("batmonster", 30, 30, "claw", "npc"))
     connection.commit()
 
@@ -80,9 +82,11 @@ def add_weapon(connection):
 
 def add_skill(connection):
     cursor = connection.cursor()
-    cursor.execute("insert into skills (name, weapon, attack_modifier, damage_modifier, arena_size) values (?, ?, ?, ?, ?)",
+    cursor.execute(
+        "insert into skills (name, weapon, attack_modifier, damage_modifier, arena_size) values (?, ?, ?, ?, ?)",
     ("double stab", "short swords", 0, 2, "all"))
-    cursor.execute("insert into skills (name, weapon, attack_modifier, damage_modifier, arena_size) values (?, ?, ?, ?, ?)",
+    cursor.execute(
+        "insert into skills (name, weapon, attack_modifier, damage_modifier, arena_size) values (?, ?, ?, ?, ?)",
     ("half swording", "longsword", 0, 2, "small"))
     cursor.execute("insert into characterskills (character_name, skill_name) values (?, ?)",
     ("Mr X", "double stab"))

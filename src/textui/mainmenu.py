@@ -1,5 +1,4 @@
 
-from textui.arenamenu import Arenamenu
 from gui.battle_ui import BattleUi
 
 COMMANDS = {
@@ -27,8 +26,12 @@ class Mainmenu:
 
         while True:
             self.player_char = self.gameservice.player_char
+            if self.player_char != None:
+                self.gameservice.save_player_character()
             if self.player_char == None:
                 self.io.print("No character selected")
+            elif self.player_char.current_hp <= 0:
+                self.io.print(f"{self.player_char.name} is dead")
             else:
                 self.io.print(f"{self.player_char.name} ready for adventure")
                 self.io.print(f"You are about to face {self.gameservice.enemy.name} in a {self.gameservice.arena.size} arena")
@@ -77,7 +80,10 @@ class Mainmenu:
             return
      
         for i in range(len(chars)):
-            self.io.print(f"{i+1}: {chars[i].name}")
+            rip = ""
+            if chars[i].current_hp <= 0:
+                rip = "RIP"
+            self.io.print(f"{i+1}: {chars[i].name} {rip}")
         try:
             choice = int(self.io.read("number of choice: "))
         except ValueError:
@@ -120,6 +126,7 @@ class Mainmenu:
             arenamenu.run()
         except Exception as e:
                     self.io.print(e)
+            
 
     def list_weapons(self):
         weapons = self.gameservice.find_all_weapons()

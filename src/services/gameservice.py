@@ -68,8 +68,8 @@ class Gameservice:
         Returns:
             Battleservice: Service running the battle
         """
-        if self.player_char is None:
-            raise Exception("You must select a character")
+        if self.player_char is None or self.player_char.current_hp <= 0:
+            raise Exception("You must select a living character")
         return Battleservice(self.player_char, self.enemy, self.arena)
 
     def find_all_weapons(self):
@@ -77,5 +77,8 @@ class Gameservice:
 
     def find_players_skills(self):
         return self.skill_repository.find_characters_skills(self.player_char.name, self.player_char.weapon.name)
+
+    def save_player_character(self):
+        self.character_repo.save_character(self.player_char)
 
 gameservice = Gameservice()

@@ -70,6 +70,16 @@ class CharacterRepository:
         row = cursor.fetchone()
         return get_character_by_row(row)
 
+    def save_character(self, character):
+        name = character.name
+        current_hp = character.current_hp
+        max_hp = character.max_hp
+        weapon = character.weapon.name
+        pc_or_npc = character.pc_or_npc
+        sql = "update characters set current_hp = ?, max_hp = ?, weapon = ?, pc_or_npc = ? where name == ?"
+        self.connection.execute(sql, (current_hp, max_hp, weapon, pc_or_npc, name))
+        self.connection.commit()
+
     def clear(self):
         """deletes all Characters
         """
