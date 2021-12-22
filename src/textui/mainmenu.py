@@ -7,7 +7,8 @@ COMMANDS = {
     "1": "1 New character",
     "2": "2 Load character",
     "3": "3 enter arena",
-    "4": "4 list available weapons"
+    "4": "4 list available weapons",
+    "5": "5 list character's skills"
 }
 
 
@@ -49,6 +50,9 @@ class Mainmenu:
 
             if command == "4":
                 self.list_weapons()
+
+            if command == "5":
+                self.list_skills()
 
     def print_commands(self):
         for command in COMMANDS:
@@ -125,4 +129,9 @@ class Mainmenu:
         
         for weapon in weapons:
             self.io.print(f"{weapon.name}")
+
+    def list_skills(self):
+        
+        for skill in self.player_char.skills:
+            self.io.print(skill.name)
 

@@ -5,6 +5,11 @@ from pyglet.window import key
 class BattleUi:
     def __init__(self, battleservice):
         self._battleservice = battleservice
+
+        self.pc = self._battleservice.pc
+        self.enemy = self._battleservice.enemy
+
+
         self.window = pyglet.window.Window(fullscreen = True)
         self.main_label = pyglet.text.Label("Fight", 
                                             font_size = 40, 
@@ -15,8 +20,7 @@ class BattleUi:
         self.arena_label = pyglet.text.Label(f"in a {self._battleservice.arena.size} arena",
                                             x=self.window.width//2, y=self.window.height-100,
                                             anchor_x="center", anchor_y="center")
-        self.pc = self._battleservice.pc
-        self.enemy = self._battleservice.enemy
+
         self.pc_label = pyglet.text.Label(f"{self.pc.name}, {self.pc.current_hp}/{self.pc.max_hp}", 
                                             x=50, y=self.window.height//8,
                                             anchor_x="center", anchor_y="center")
@@ -29,7 +33,7 @@ class BattleUi:
         self.report_label = pyglet.text.Label("",x=self.window.width//2, y=self.window.height//2,
                                             anchor_x="center", anchor_y="center")
 
-        self.instrucion_label = pyglet.text.Label("Press 1 to attack",x=self.window.width//2, y=self.window.height//7,
+        self.instruction_label = pyglet.text.Label("Press 1 to attack",x=self.window.width//2, y=self.window.height//7,
                                                     anchor_x="center", anchor_y="center")
         
         
@@ -51,7 +55,7 @@ class BattleUi:
         self.enemy_label.draw()
         self.report_label.draw()
         self.arena_label.draw()
-        self.instrucion_label.draw()
+        self.instruction_label.draw()
 
     def battle_over_window(self):
         label = pyglet.text.Label("", 
@@ -100,8 +104,7 @@ class BattleUi:
             self.report_label.text = "You missed!"
         
     def check_hps(self):
-        if self.pc.current_hp <=0 or self.enemy.current_hp <= 0:
-            self.battle_over = True
+        self.battle_over = self._battleservice.battle_over()
         
 
     def update_labels(self):

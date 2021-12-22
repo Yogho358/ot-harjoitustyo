@@ -9,6 +9,14 @@ def drop_tables(connection):
         drop table if exists weapons;
         ''')
 
+    cursor.execute('''
+        drop table if exists skills;
+        ''')
+
+    cursor.execute('''
+        drop table if exists characterskills;
+        ''')
+
     connection.commit()
 
 def create_tables(connection):
@@ -33,6 +41,23 @@ def create_tables(connection):
         );
         ''')
 
+    cursor.execute('''
+        create table skills (
+            name text primary key,
+            weapon text,
+            attack_modifier integer,
+            damage_modifier integer,
+            arena_size text
+        );
+        ''')
+
+    cursor.execute('''
+        create table characterskills (
+            character_name text,
+            skill_name text
+        );
+        ''')
+
     connection.commit()
 
 def add_enemy(connection):
@@ -49,6 +74,26 @@ def add_weapon(connection):
     ("longsword", "large", 2, 6, 65))
     cursor.execute("insert into weapons (name, size, min_dmg, max_dmg, chance_to_defend) values (?, ?, ?, ?, ?)",
     ("claw", "small", 1, 4, 25))
+    cursor.execute("insert into weapons (name, size, min_dmg, max_dmg, chance_to_defend) values (?, ?, ?, ?, ?)",
+    ("short swords", "small", 1, 5, 45))
+    connection.commit()
+
+def add_skill(connection):
+    cursor = connection.cursor()
+    cursor.execute("insert into skills (name, weapon, attack_modifier, damage_modifier, arena_size) values (?, ?, ?, ?, ?)",
+    ("double stab", "short swords", 0, 2, "all"))
+    cursor.execute("insert into skills (name, weapon, attack_modifier, damage_modifier, arena_size) values (?, ?, ?, ?, ?)",
+    ("half swording", "longsword", 0, 2, "small"))
+    cursor.execute("insert into characterskills (character_name, skill_name) values (?, ?)",
+    ("Mr X", "double stab"))
+    cursor.execute("insert into characterskills (character_name, skill_name) values (?, ?)",
+    ("Mr X", "half swording"))
+    connection.commit()
+
+def add_character(connection):
+    cursor = connection.cursor()
+    cursor.execute("insert into characters (name, current_hp, max_hp, weapon, pc_or_npc) values (?, ?, ?, ?, ?)",
+    ("Mr X", 20, 20, "longsword", "pc"))
     connection.commit()
 
 def initialize_database():
@@ -58,6 +103,8 @@ def initialize_database():
     create_tables(connection)
     add_enemy(connection)
     add_weapon(connection)
+    add_skill(connection)
+    add_character(connection)
 
 if __name__ == '__main__':
     initialize_database()

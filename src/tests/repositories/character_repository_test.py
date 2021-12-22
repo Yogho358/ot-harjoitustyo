@@ -20,8 +20,8 @@ class TestCharacterRepository(unittest.TestCase):
     def test_find_all(self):
         
         characters = character_repository.find_all()
-        self.assertEqual(len(characters),2)
-        self.assertEqual(characters[0].name, "mr a")
+        self.assertEqual(len(characters),3)
+        self.assertEqual(characters[1].name, "mr a")
 
     def test_find_by_character_name(self):
         

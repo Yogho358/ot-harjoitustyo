@@ -19,6 +19,9 @@ class Battleservice:
         self.pc = pc
         self.enemy = enemy
         self.arena = arena
+        self._attack_modifier = 0
+        self._damage_modifier = 0
+        
 
     def turn(self, player, command):
         """processes a single turn
@@ -30,23 +33,41 @@ class Battleservice:
         Returns:
             Boolean: whether the action succeeded
         """
+        if player == "pc":
+            actor = self.pc
+            target = self.enemy            
+        else:
+            actor = self.enemy
+            target = self.pc
+
         if command == "attack":
-            if player == "pc":
-                attacker = self.pc
-                target = self.enemy
-            else:
-                attacker = self.enemy
-                target = self.pc
-            return self.attack(attacker, target)
+            return self.attack(actor, target)
         return
 
     def attack(self, attacker, target):
-        attack_roll = random.randint(0, 100)
-        if self.arena.size != attacker.weapon.size:
+        attack_roll = random.randint(0, 100) + self._attack_modifier
+        if self.arena.size == "small" and attacker.weapon.size == "large":
             attack_roll -= 10
+        
         if attack_roll < target.weapon.chance_to_defend:
             return False
 
         damage = random.randint(attacker.weapon.min_dmg, attacker.weapon.max_dmg)
-        target.current_hp -= damage
+        target.current_hp -= damage + self._damage_modifier
         return True
+
+    def attack_with_skill(self, attacker, target, skill):
+        if skill.arena_size == self.arena.size or skill.arena_size == "all":
+            self._attack_modifier += skill.attack_modifier
+            self._damage_modifier += skill.damage_modifier
+
+        hit = self.attack(attacker, target)
+        self.reset_modifiers()
+        return hit
+
+    def reset_modifiers(self):
+        self._attack_modifier = 0
+        self._damage_modifier = 0
+
+    def battle_over(self):
+        return self.pc.current_hp <= 0 or self.enemy.current_hp <= 0
