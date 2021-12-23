@@ -87,7 +87,13 @@ def add_skill(connection):
     ("double stab", "short swords", 0, 2, "all"))
     cursor.execute(
         "insert into skills (name, weapon, attack_modifier, damage_modifier, arena_size) values (?, ?, ?, ?, ?)",
-    ("half swording", "longsword", 0, 2, "small"))
+    ("off-hand distraction", "short swords", 2, -2, "all"))
+    cursor.execute(
+        "insert into skills (name, weapon, attack_modifier, damage_modifier, arena_size) values (?, ?, ?, ?, ?)",
+    ("half swording", "longsword", 2, 0, "small"))
+    cursor.execute(
+        "insert into skills (name, weapon, attack_modifier, damage_modifier, arena_size) values (?, ?, ?, ?, ?)",
+    ("overhead swing", "longsword", -2, 4, "large"))
     cursor.execute("insert into characterskills (character_name, skill_name) values (?, ?)",
     ("Mr X", "double stab"))
     cursor.execute("insert into characterskills (character_name, skill_name) values (?, ?)",

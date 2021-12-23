@@ -71,6 +71,9 @@ class CharacterRepository:
         return get_character_by_row(row)
 
     def save_character(self, character):
+        """
+        Saves the current state of the character to the database
+        """
         name = character.name
         current_hp = character.current_hp
         max_hp = character.max_hp

@@ -1,5 +1,4 @@
 import pyglet
-import time
 from pyglet.window import key
 
 class BattleUi:
@@ -11,7 +10,7 @@ class BattleUi:
         self.number_of_skills = len(self.pc.skills)
 
 
-        self.window = pyglet.window.Window(fullscreen = False)
+        self.window = pyglet.window.Window(fullscreen = True)
         self.main_label = pyglet.text.Label("Fight", 
                                             font_size = 40, 
                                             x=self.window.width//2, y=self.window.height-50,
@@ -39,11 +38,13 @@ class BattleUi:
 
         self.skill_label = self.skill_buttons()
 
-        
-        
-        
+        self.swords = pyglet.image.load("./assets/swords.png")
+        self.swords.anchor_x = self.swords.width//2
+        self.swords.anchor_y = self.swords.height//2
+
         self.waiting_for_turn = False
         self.battle_over = False
+
         self.on_draw = self.window.event(self.on_draw)
         self.on_key_press = self.window.event(self.on_key_press)
 
@@ -62,6 +63,7 @@ class BattleUi:
         self.arena_label.draw()
         self.instruction_label.draw()
         self.skill_label.draw()
+        self.swords.blit(self.window.width//2, self.window.height-180)
 
     def battle_over_window(self):
         label = pyglet.text.Label("", 
@@ -88,6 +90,14 @@ class BattleUi:
             self.pc_attacks()
         if symbol == key._1 and self.number_of_skills >= 1:
             self.pc_uses_skill_attack(1)
+        if symbol == key._2 and self.number_of_skills >= 2:
+            self.pc_uses_skill_attack(2)
+        if symbol == key._3 and self.number_of_skills >= 3:
+            self.pc_uses_skill_attack(3)
+        if symbol == key._4 and self.number_of_skills >= 4:
+            self.pc_uses_skill_attack(4)
+        if symbol == key._5 and self.number_of_skills >= 5:
+            self.pc_uses_skill_attack(5)
 
 
         self.update_labels()
@@ -125,8 +135,7 @@ class BattleUi:
         text = ""
         for i in range(1,self.number_of_skills+1):
             text = text + f"press {i} to use skill {self.pc.skills[i-1].name}  "
-        label = pyglet.text.Label(text,x=150, y=self.window.height//3,
-                                             anchor_x="center", anchor_y="center")
+        label = pyglet.text.Label(text,x=150, y=self.window.height//3)
         return label
 
     def update_labels(self):

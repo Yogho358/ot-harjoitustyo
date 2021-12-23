@@ -33,6 +33,8 @@ class Gameservice:
             weapon (string): name of the weapon the character uses
             pc_or_npc (string): whether the character is meant to be played or to be an enemy
         """
+        if len(name) == 0:
+            raise Exception("Name cannot be empty")
         c = Character(name, current_hp, max_hp, weapon, pc_or_npc)
         self.set_player_char(self.character_repo.create(c).name)
 
@@ -76,9 +78,36 @@ class Gameservice:
         return self.weapon_repo.find_all()
 
     def find_players_skills(self):
+        """
+        Finds the skills the current pc has that can be used with the current weapon
+        """
         return self.skill_repository.find_characters_skills(self.player_char.name, self.player_char.weapon.name)
 
     def save_player_character(self):
         self.character_repo.save_character(self.player_char)
+
+    def find_available_skills(self):
+        """
+        Finds the skills the current pc does not have but can be used with the current weapon
+        """
+        res = []
+        skills = self.skill_repository.find_all()
+        existing = []
+        for skill in self.player_char.skills:
+            existing.append(skill.name)
+
+        for skill in skills:
+            if skill.name not in existing and skill.weapon == self.player_char.weapon.name:
+                res.append(skill)
+        return res
+    
+    def add_skill_to_pc(self, skill):
+        self.skill_repository.add_skill_to_character(self.player_char.name, skill.name)
+        self.reset_lvl_up()
+        self.set_player_char(self.player_char.name)
+
+    def reset_lvl_up(self):
+        self.player_char.lvl_up_overwhelm = False
+        self.player_char.lvl_up_desperation = False
 
 gameservice = Gameservice()

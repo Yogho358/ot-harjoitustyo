@@ -58,6 +58,9 @@ class Battleservice:
         return True
 
     def attack_with_skill(self, attacker, target, skill_number):
+        """
+        Chooses an attack skill to modify attack. The skill number is extracted from the skill list at battle ui, so it can be used reliably
+        """
         skill = self.pc.skills[skill_number-1]
         if skill.arena_size == self.arena.size or skill.arena_size == "all":
             self._attack_modifier += skill.attack_modifier
@@ -72,4 +75,15 @@ class Battleservice:
         self._damage_modifier = 0
 
     def battle_over(self):
-        return self.pc.current_hp <= 0 or self.enemy.current_hp <= 0
+        """
+        Checks wther either of the characters has died, and has the pc gained a level up
+        """
+        over = self.pc.current_hp <= 0 or self.enemy.current_hp <= 0
+        if not over:
+            return False
+        if self.pc.current_hp > 0:
+            if self.pc.current_hp/self.pc.max_hp < 0.25:
+                self.pc.lvl_up_desperation = True
+            if self.pc.current_hp/self.pc.max_hp > 0.75:
+                self.pc.lvl_up_overwhelm = True
+        return True
