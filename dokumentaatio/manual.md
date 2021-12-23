@@ -2,7 +2,7 @@
 
 ## Set up
 
-First of all, run command "poetry install" to finish installation, and run command "poetry run invoke build" to set up databases.
+First of all, run command "poetry install" to finish installation, and run command "poetry run invoke build" to set up databases. Database name can be manually changed in the .env file.
 
 ## Start
 Start the program with the command "poetry run invoke start"
