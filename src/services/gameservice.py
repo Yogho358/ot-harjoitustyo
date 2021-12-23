@@ -14,7 +14,9 @@ class Gameservice:
             weapon repository: for finding weapons
     """
 
-    def __init__(self, character_repo = character_repository, arena_repo = arena_repository, weapon_repository = weapon_repository, skill_repository = skill_repository):
+    def __init__(self, character_repo = character_repository,
+                arena_repo = arena_repository, weapon_repository = weapon_repository,
+                skill_repository = skill_repository):
         self.player_char = None
         self.arena_repo = arena_repo
         self.enemy = None
@@ -24,7 +26,8 @@ class Gameservice:
         self.skill_repository = skill_repository
 
     def create_character(self, name, current_hp, max_hp, weapon, pc_or_npc):
-        """Creates a new character and saves it to database, and adds it as a current player character
+        """Creates a new character and saves it to database,
+        and adds it as a current player character
 
         Args:
             name (string): name of the new character, must be unique
@@ -79,7 +82,8 @@ class Gameservice:
 
     def find_players_skills(self):
         """
-        Finds the skills the current pc has that can be used with the current weapon
+        Finds the skills the current pc has
+        that can be used with the current weapon
         """
         return self.skill_repository.find_characters_skills(self.player_char.name, self.player_char.weapon.name)
 
@@ -88,7 +92,8 @@ class Gameservice:
 
     def find_available_skills(self):
         """
-        Finds the skills the current pc does not have but can be used with the current weapon
+        Finds the skills the current
+        pc does not have but can be used with the current weapon
         """
         res = []
         skills = self.skill_repository.find_all()

@@ -59,7 +59,8 @@ class Battleservice:
 
     def attack_with_skill(self, attacker, target, skill_number):
         """
-        Chooses an attack skill to modify attack. The skill number is extracted from the skill list at battle ui, so it can be used reliably
+        Chooses an attack skill to modify attack.
+        The skill number is extracted from the skill list at battle ui, so it can be used reliably
         """
         skill = self.pc.skills[skill_number-1]
         if skill.arena_size == self.arena.size or skill.arena_size == "all":

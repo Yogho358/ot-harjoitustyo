@@ -10,9 +10,12 @@ class Character:
             skills: list of character's skills
             lvl_up_overwhelm: character got a level up due to overwhelming success
             lvl_up_desperation: character got a level up due to desperate situation
-            different level ups are a placeholder, plan is to have different skills to be learnt from different circumstances 
+            different level ups are a placeholder, plan is to have different skills to be
+            learned from different circumstances
     """
-    def __init__(self, name, current_hp, max_hp, weapon, pc_or_npc, skills = [], lvl_up_overwhelm = False, lvl_up_desperation = False):
+    def __init__(self, name, current_hp,
+                max_hp, weapon, pc_or_npc, skills = [],
+                lvl_up_overwhelm = False, lvl_up_desperation = False):
         self.name = name
         self.current_hp = current_hp
         self.max_hp = max_hp
