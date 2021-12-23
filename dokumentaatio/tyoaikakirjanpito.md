@@ -8,5 +8,7 @@
 | 6.12  | 10   | Aseiden lisäys, taistelu toimii|
 | 11.12 | 5    | Pyglet-kirjaston opettelu ja käyttöönotto|
 | 13.12 | 5    | Pyglet-kirjaston opettelu ja käyttöönotto|
+| 22.12 | 5    | Taitojen lisäys ja talletus/lataus|
+| 23.12 | 5    | Taitojen saaminen taistelun jälkeen|
 
-Yhteensä 31 tuntia
+Yhteensä 41 tuntia
